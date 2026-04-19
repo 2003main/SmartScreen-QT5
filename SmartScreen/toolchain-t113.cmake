@@ -1,0 +1,23 @@
+# toolchain-t113.cmake
+# T113 ARM Cortex-A7 交叉编译工具链
+# 用法: cmake .. -DCMAKE_TOOLCHAIN_FILE=../toolchain-t113.cmake
+
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR arm)
+
+# 根据你的SDK路径修改以下路径
+set(TOOLCHAIN_PREFIX arm-linux-gnueabihf)
+set(TOOLCHAIN_DIR /opt/arm-linux-gnueabihf/bin)
+
+set(CMAKE_C_COMPILER   ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}-gcc)
+set(CMAKE_CXX_COMPILER ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}-g++)
+set(CMAKE_STRIP        ${TOOLCHAIN_DIR}/${TOOLCHAIN_PREFIX}-strip)
+
+# Qt5 交叉编译安装路径（根据你的Qt交叉编译安装位置修改）
+set(QT_INSTALL_PATH /opt/qt5-t113)
+set(CMAKE_PREFIX_PATH ${QT_INSTALL_PATH})
+
+set(CMAKE_FIND_ROOT_PATH ${QT_INSTALL_PATH})
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
